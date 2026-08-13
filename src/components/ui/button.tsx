@@ -16,12 +16,18 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        neon: "bg-primary text-primary-foreground font-semibold shadow-[0_10px_30px_-12px_var(--primary)] hover:brightness-110 hover:shadow-[0_14px_40px_-10px_var(--primary)] transition-all",
+        glass:
+          "glass text-foreground hover:border-primary/50 hover:text-primary backdrop-blur transition-colors",
+        whatsapp:
+          "bg-accent text-accent-foreground font-semibold hover:brightness-110 shadow-[0_10px_30px_-14px_var(--accent)] transition-all",
       },
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-md px-3 text-xs",
         lg: "h-10 rounded-md px-8",
         icon: "h-9 w-9",
+        xl: "h-12 rounded-xl px-8 text-base",
       },
     },
     defaultVariants: {
