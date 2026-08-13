@@ -26,7 +26,7 @@ export type Product = {
   name: string;
   category: Category;
   price: number;
-  oldPrice?: number;
+  oldPrice?: number | undefined;
   rating: number;
   reviews: number;
   stock: number;
@@ -127,6 +127,8 @@ export const PRODUCTS: Product[] = seeds.map(([name, category, price, photos], i
   const r = (n: number) => rnd(i + n * 7.13);
   const stock = Math.floor(r(1) * 26);
   const outOfStock = r(2) > 0.9;
+  const p0 = photos[0] as string;
+  const p1 = (photos[1] ?? photos[0]) as string;
   return {
     id: slug(name),
     name,
@@ -137,7 +139,7 @@ export const PRODUCTS: Product[] = seeds.map(([name, category, price, photos], i
     reviews: 12 + Math.floor(r(5) * 480),
     stock: outOfStock ? 0 : stock,
     inStock: !outOfStock && stock > 0,
-    images: [cdn(photos[0]), cdn(photos[1] ?? photos[0]), cdn(photos[0], 900, "edges"), cdn(photos[1] ?? photos[0], 900, "faces")],
+    images: [cdn(p0), cdn(p1), cdn(p0, 900, "edges"), cdn(p1, 900, "faces")],
     videoPreview: r(6) > 0.5,
     blurb: `${category} essential engineered for daily use — precision materials, considered details.`,
     description: `The ${name} is part of the MOA Mart curated ${category.toLowerCase()} line. Every unit is inspected before dispatch and ships with our 12-month replacement promise. Designed for durability first, with a restrained silhouette that fits any setup.`,
@@ -166,7 +168,7 @@ export const PRODUCTS: Product[] = seeds.map(([name, category, price, photos], i
     wishlists: Math.floor(r(11) * 1200),
     orders: Math.floor(r(12) * 600),
     createdDaysAgo: Math.floor(r(13) * 220),
-    tags: [category, name.split(" ")[0]],
+    tags: [category, name.split(" ")[0] as string],
   };
 });
 
